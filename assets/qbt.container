@@ -7,19 +7,35 @@ RequiresMountsFor=%t/containers
 ContainerName=qbt
 # * Specify the container image to use.
 Image=ghcr.io/han-rs/container-ci-qbittorrent:latest
+# * Automatically pull the latest image.
+AutoUpdate=registry
 # * Run the container in user namespace mode with the current user's ID.
+# *
 # * Don't modify this field unless you know what you're doing.
 UserNS=keep-id:uid=65532,gid=65532
-# * Use the host's network stack for better performance.
+# * If you want better performance, you can uncomment the following line to use host networking.
 # Network=host
 # * Publish ports from the container to the host.
+# *
 # * If Network=host is used, these options will be ignored.
+# * The format is [host_ip:]host_port:container_port[/protocol].
+# * Please set these according to what you configured.
 PublishPort=127.0.0.1:6880:6880
 PublishPort=6881:6881
 PublishPort=6881:6881/udp
-# * Mount a volume in the pod. This is equivalent to the Podman --volume option.
-# Volume=/path/to/logs:/opt/qBittorrent/logs
+# * Specify WebUI and torrenting ports as environment variables.
+# *
+# * Generally, you don't need to change these unless you want to use different ports.
+# Environment=QBT_WEBUI_PORT=6880
+# Environment=QBT_TORRENTING_PORT=6881
+# * Mount downloads directories from the host to the container.
+# *
+# * You should adjust the host paths accordingly.
 # Volume=/path/to/downloads:/opt/qBittorrent/downloads
+# * Mount log directories from the host to the container.
+# *
+# * Generally, you don't need to do this.
+# Volume=/path/to/logs:/opt/qBittorrent/logs
 
 [Service]
 # * Always restart the container if it stops.
