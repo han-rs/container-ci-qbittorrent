@@ -6,7 +6,7 @@ RequiresMountsFor=%t/containers
 # * Specify the name of the container.
 ContainerName=qbt
 # * Specify the container image to use.
-Image=ghcr.io/han-rs/container-ci-qbittorrent:prod
+Image=ghcr.io/han-rs/container-ci-qbittorrent:latest
 # * Run the container in user namespace mode with the current user's ID.
 # * Don't modify this field unless you know what you're doing.
 UserNS=keep-id:uid=65532,gid=65532
