@@ -42,7 +42,7 @@ copy() {
 
 	# Check if config already exists
 	if [ -f "$dest" ]; then
-		log_warning "Warning: Existing qbt.container will be backed up to qbt.container.bak"
+		log_warning "Warning: Existing $dest will be backed up"
 		cp "$dest" "${dest}.bak"
 	fi
 
@@ -103,7 +103,7 @@ else
 		fi
 	fi
 
-	log_info "Starting qbittorrent service..."
+	log_info "Starting qBittorrent service..."
 
 	systemctl --user daemon-reload
 	systemctl --user start qbt
