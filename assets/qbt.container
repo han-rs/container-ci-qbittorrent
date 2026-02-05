@@ -1,0 +1,27 @@
+[Unit]
+Description=qBittorrent Distroless Container Service
+RequiresMountsFor=%t/containers
+
+[Container]
+# * Specify the name of the container.
+ContainerName=qbt
+# * Specify the container image to use.
+Image=ghcr.io/han-rs/container-ci-qbittorrent:prod
+# * Run the container in user namespace mode with the current user's ID.
+# * Don't modify this field unless you know what you're doing.
+UserNS=keep-id:uid=65532,gid=65532
+# * Use the host's network stack for better performance.
+# Network=host
+# * Mount a volume in the pod. This is equivalent to the Podman --volume option.
+# Volume=/path/to/logs:/opt/qBittorrent/logs
+# Volume=/path/to/downloads:/opt/qBittorrent/downloads
+
+[Service]
+# * Always restart the container if it stops.
+Restart=always
+# * Give the container more time to start.
+TimeoutStartSec=900
+
+[Install]
+# * Enable the service to start at boot.
+WantedBy=default.target
