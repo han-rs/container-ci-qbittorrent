@@ -16,9 +16,7 @@ UserNS=keep-id:uid=65532,gid=65532
 # * If Network=host is used, these options will be ignored.
 PublishPort=127.0.0.1:6880:6880
 PublishPort=6881:6881
-PublishPort=[::]:6881:6881
 PublishPort=6881:6881/udp
-PublishPort=[::]:6881:6881/udp
 # * Mount a volume in the pod. This is equivalent to the Podman --volume option.
 # Volume=/path/to/logs:/opt/qBittorrent/logs
 # Volume=/path/to/downloads:/opt/qBittorrent/downloads
