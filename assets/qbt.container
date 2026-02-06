@@ -28,6 +28,8 @@ PublishPort=6881:6881/udp
 # * Generally, you don't need to change these unless you want to use different ports.
 # Environment=QBT_WEBUI_PORT=6880
 # Environment=QBT_TORRENTING_PORT=6881
+# * Mount configs directories from the host to the container.
+Volume=%h/.config/qBittorrent:/opt/qBittorrent/config
 # * Mount downloads directories from the host to the container.
 # *
 # * You should adjust the host paths accordingly.

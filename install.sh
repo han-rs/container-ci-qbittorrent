@@ -87,6 +87,12 @@ else
 	mkdir -p ~/.config/containers/systemd
 	copy ./assets/qbt.container ~/.config/containers/systemd/qbt.container
 
+    if [ ! -f ~/.config/qBittorrent/qBittorrent.conf ]; then
+        log_info "Creating default qBittorrent configuration..."
+        mkdir -p ~/.config/qBittorrent
+        copy ./assets/qBittorrent.conf ~/.config/qBittorrent/qBittorrent.conf
+    fi
+
 	# Edit if necessary (skip if --noninteractive is passed)
 	if [ "$NONINTERACTIVE" != "true" ]; then
 		log_info "Opening editor for configuration. Press Ctrl+X to exit nano."
