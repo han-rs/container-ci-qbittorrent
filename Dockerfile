@@ -11,8 +11,9 @@ ARG IMAGE_VCS_REF=00000000
 # Versions
 # These versions should be kept in sync with the ones in .github/workflows/ci.yaml.
 ARG QBITTORRENT_NOX_VERSION=5.1.4
-ARG QBITTORRENT_NOX_SUB_VERSION=1
+ARG QBITTORRENT_NOX_SUB_VERSION=2
 ARG LIB_TORRENT_VERSION=2.0.11
+ARG THEME_VUE_TORRENT_VERSION=2.31.3
 
 # Non-root user and group IDs
 ARG UID=65532
@@ -32,12 +33,14 @@ ARG https_proxy
 RUN set -e && \
     apk -U upgrade && apk add --no-cache \
     ca-certificates=20251003-r0 \
-    wget=1.25.0-r2
+    wget=1.25.0-r2 \
+    unzip=6.0-r16
 
 ARG TARGETARCH=amd64
 
 ARG QBITTORRENT_NOX_VERSION
 ARG LIB_TORRENT_VERSION
+ARG THEME_VUE_TORRENT_VERSION
 
 WORKDIR /opt/qBittorrent
 
@@ -54,6 +57,16 @@ RUN set -e \
     TAG_NAME="release-${QBITTORRENT_NOX_VERSION}_v${LIB_TORRENT_VERSION}" \
     && \
     wget -O ./qbittorrent "https://github.com/userdocs/qbittorrent-nox-static/releases/download/${TAG_NAME}/${QBITTORRENT_NOX_FILENAME}"
+
+WORKDIR /opt/qBittorrent/themes
+
+RUN set -e \
+    && \
+    wget -O ./vuetorrent.zip https://github.com/VueTorrent/VueTorrent/releases/download/v${THEME_VUE_TORRENT_VERSION}/vuetorrent.zip \
+    && \
+    unzip vuetorrent.zip \
+    && \
+    rm vuetorrent.zip
 
 # === Package Stage ===
 

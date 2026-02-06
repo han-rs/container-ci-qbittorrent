@@ -17,7 +17,7 @@ env:
   # The target version.
   # These versions should be kept in sync with the ones in Dockerfile.
   QBITTORRENT_NOX_VERSION: "5.1.4"
-  QBITTORRENT_NOX_SUB_VERSION: "1"
+  QBITTORRENT_NOX_SUB_VERSION: "2"
   LIB_TORRENT_VERSION: "2.0.11"
 
 jobs:
