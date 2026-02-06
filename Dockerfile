@@ -11,7 +11,7 @@ ARG IMAGE_VCS_REF=00000000
 # Versions
 # These versions should be kept in sync with the ones in .github/workflows/ci.yaml.
 ARG QBITTORRENT_NOX_VERSION=5.1.4
-ARG QBITTORRENT_NOX_SUB_VERSION=0
+ARG QBITTORRENT_NOX_SUB_VERSION=1
 ARG LIB_TORRENT_VERSION=2.0.11
 
 # Non-root user and group IDs
@@ -85,6 +85,10 @@ COPY --from=downloader /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-cert
 COPY --from=downloader --chown="${UID}:${GID}" --chmod=775 /opt/qBittorrent /opt/qBittorrent
 COPY --chown="${UID}:${GID}" --chmod=775 ./assets/qBittorrent.conf /opt/qBittorrent/config/qBittorrent.conf
 COPY --chown="${UID}:${GID}" --chmod=775 ./assets/search /opt/qBittorrent/data/nova3/engines
+
+# Fix CA certificates, see: https://github.com/qbittorrent/qBittorrent/issues/14610#issuecomment-808679015
+ENV SSL_CERT_DIR=/etc/ssl/certs
+ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
 ENV QBT_WEBUI_PORT=6880 \
     QBT_TORRENTING_PORT=6881
