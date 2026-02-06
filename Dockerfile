@@ -11,7 +11,7 @@ ARG IMAGE_VCS_REF=00000000
 # Versions
 # These versions should be kept in sync with the ones in .github/workflows/ci.yaml.
 ARG QBITTORRENT_NOX_VERSION=5.1.4
-ARG QBITTORRENT_NOX_SUB_VERSION=2
+ARG QBITTORRENT_NOX_SUB_VERSION=3
 ARG LIB_TORRENT_VERSION=2.0.11
 ARG THEME_VUE_TORRENT_VERSION=2.31.3
 
@@ -104,7 +104,7 @@ ENV SSL_CERT_DIR=/etc/ssl/certs \
     SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
 ENV QBT_WEBUI_PORT=6880 \
-    QBT_TORRENTING_PORT=6881
+    QBT_TORRENTING_PORT=52881
 
 WORKDIR /opt/qBittorrent
 

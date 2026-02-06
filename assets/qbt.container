@@ -21,13 +21,13 @@ UserNS=keep-id:uid=65532,gid=65532
 # * The format is [host_ip:]host_port:container_port[/protocol].
 # * Please set these according to what you configured.
 PublishPort=127.0.0.1:6880:6880
-PublishPort=6881:6881
-PublishPort=6881:6881/udp
+PublishPort=52881:52881
+PublishPort=52881:52881/udp
 # * Specify WebUI and torrenting ports as environment variables.
 # *
 # * Generally, you don't need to change these unless you want to use different ports.
 # Environment=QBT_WEBUI_PORT=6880
-# Environment=QBT_TORRENTING_PORT=6881
+# Environment=QBT_TORRENTING_PORT=52881
 # * Mount configs directories from the host to the container.
 Volume=%h/.config/qBittorrent:/opt/qBittorrent/config
 # * Mount downloads directories from the host to the container.
