@@ -30,9 +30,9 @@ if ! command -v podman >/dev/null 2>&1; then
 	exit 1
 fi
 
-# Non-interactive mode.
-FULL_UPGRADE=${FULL_UPGRADE:-"false"}
+UPDATE_CONF=${UPDATE_CONF:-"false"}
 UPGRADE=${UPGRADE:-"false"}
+FULL_UPGRADE=${FULL_UPGRADE:-"false"}
 NONINTERACTIVE=${NONINTERACTIVE:-"false"}
 
 # Function to safely copy config file with backup
@@ -51,6 +51,10 @@ copy() {
 
 for arg in "$@"; do
 	case $arg in
+	--update-conf)
+		UPDATE_CONF="true"
+		shift
+		;;
 	--upgrade)
 		UPGRADE="true"
 		shift
@@ -66,6 +70,18 @@ for arg in "$@"; do
 		;;
 	esac
 done
+
+if [ "$UPDATE_CONF" = "true" ]; then
+	log_info "Updating configuration files..."
+
+	mkdir -p ~/.config/qBittorrent
+	copy ./assets/qBittorrent.conf ~/.config/qBittorrent/qBittorrent.conf
+
+	systemctl --user restart qbt
+
+	log_success "Configuration files updated successfully."
+	exit 0
+fi
 
 log_info "Pulling image..."
 
