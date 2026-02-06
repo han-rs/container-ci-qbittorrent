@@ -87,8 +87,8 @@ COPY --chown="${UID}:${GID}" --chmod=775 ./assets/qBittorrent.conf /opt/qBittorr
 COPY --chown="${UID}:${GID}" --chmod=775 ./assets/search /opt/qBittorrent/data/nova3/engines
 
 # Fix CA certificates, see: https://github.com/qbittorrent/qBittorrent/issues/14610#issuecomment-808679015
-ENV SSL_CERT_DIR=/etc/ssl/certs
-ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+ENV SSL_CERT_DIR=/etc/ssl/certs \
+    SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
 ENV QBT_WEBUI_PORT=6880 \
     QBT_TORRENTING_PORT=6881
