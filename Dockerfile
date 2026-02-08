@@ -11,9 +11,8 @@ ARG IMAGE_VCS_REF=00000000
 # Versions
 # These versions should be kept in sync with the ones in .github/workflows/ci.yaml.
 ARG QBITTORRENT_NOX_VERSION=5.1.4
-ARG QBITTORRENT_NOX_SUB_VERSION=3
+ARG QBITTORRENT_NOX_SUB_VERSION=4
 ARG LIB_TORRENT_VERSION=2.0.11
-ARG THEME_VUE_TORRENT_VERSION=2.31.3
 
 # Non-root user and group IDs
 ARG UID=65532
@@ -40,7 +39,6 @@ ARG TARGETARCH=amd64
 
 ARG QBITTORRENT_NOX_VERSION
 ARG LIB_TORRENT_VERSION
-ARG THEME_VUE_TORRENT_VERSION
 
 WORKDIR /opt/qBittorrent
 
@@ -57,16 +55,6 @@ RUN set -e \
     TAG_NAME="release-${QBITTORRENT_NOX_VERSION}_v${LIB_TORRENT_VERSION}" \
     && \
     wget -O ./qbittorrent "https://github.com/userdocs/qbittorrent-nox-static/releases/download/${TAG_NAME}/${QBITTORRENT_NOX_FILENAME}"
-
-WORKDIR /opt/qBittorrent/themes
-
-RUN set -e \
-    && \
-    wget -O ./vuetorrent.zip https://github.com/VueTorrent/VueTorrent/releases/download/v${THEME_VUE_TORRENT_VERSION}/vuetorrent.zip \
-    && \
-    unzip vuetorrent.zip \
-    && \
-    rm vuetorrent.zip
 
 # === Package Stage ===
 
@@ -97,7 +85,6 @@ LABEL description="qBittorrent Distroless Image" \
 COPY --from=downloader /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=downloader --chown="${UID}:${GID}" --chmod=775 /opt/qBittorrent /opt/qBittorrent
 COPY --chown="${UID}:${GID}" --chmod=775 ./assets/qBittorrent.conf /opt/qBittorrent/config/qBittorrent.conf
-COPY --chown="${UID}:${GID}" --chmod=775 ./assets/search /opt/qBittorrent/data/nova3/engines
 
 # Fix CA certificates, see: https://github.com/qbittorrent/qBittorrent/issues/14610#issuecomment-808679015
 ENV SSL_CERT_DIR=/etc/ssl/certs \
