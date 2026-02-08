@@ -102,4 +102,4 @@ USER "${UID}:${GID}"
 ENTRYPOINT ["/opt/qBittorrent/qbittorrent"]
 
 # Default arguments for qbittorrent-nox
-CMD ["/opt/qBittorrent/qbittorrent", "--confirm-legal-notice", "--profile=/opt"]
+CMD ["--confirm-legal-notice", "--profile=/opt"]
