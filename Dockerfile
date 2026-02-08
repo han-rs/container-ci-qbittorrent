@@ -112,7 +112,7 @@ WORKDIR /opt/qBittorrent
 USER "${UID}:${GID}"
 
 # Start in foreground mode
-ENTRYPOINT ["./qbittorrent"]
+ENTRYPOINT ["/opt/qBittorrent/qbittorrent"]
 
 # Default arguments for qbittorrent-nox
-CMD ["./qbittorrent", "--confirm-legal-notice", "--profile=/opt"]
+CMD ["/opt/qBittorrent/qbittorrent", "--confirm-legal-notice", "--profile=/opt"]
