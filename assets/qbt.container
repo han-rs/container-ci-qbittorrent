@@ -28,12 +28,12 @@ PublishPort=52881:52881/udp
 # * Generally, you don't need to change these unless you want to use different ports.
 # Environment=QBT_WEBUI_PORT=6880
 # Environment=QBT_TORRENTING_PORT=52881
-# * Mount configs directories from the host to the container.
-Volume=%h/.config/qBittorrent:/opt/qBittorrent/config
+# * Persistent storage for config
+Volume=%h/.local/share/qBittorrent/config:/opt/qBittorrent/config
+# * Persistent storage for data
+Volume=%h/.local/share/qBittorrent/data:/opt/qBittorrent/data
 # * Mount themes directories from the host to the container.
 # Volume=%h/.config/qBittorrent/themes:/opt/qBittorrent/themes
-# * Mount data directories from the host to the container.
-# Volume=%h/.config/qBittorrent/data:/opt/qBittorrent/data
 # * Mount downloads directories from the host to the container.
 # *
 # * You should adjust the host paths accordingly.
