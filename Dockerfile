@@ -11,8 +11,8 @@ ARG IMAGE_VCS_REF=00000000
 # Versions
 # These versions should be kept in sync with the ones in .github/workflows/ci.yaml.
 ARG QBITTORRENT_NOX_VERSION=5.1.4
-ARG QBITTORRENT_NOX_SUB_VERSION=4
-ARG LIB_TORRENT_VERSION=2.0.11
+ARG QBITTORRENT_NOX_SUB_VERSION=5
+ARG LIB_TORRENT_VERSION=2.0.12
 
 # Non-root user and group IDs
 ARG UID=65532
