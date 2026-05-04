@@ -10,8 +10,8 @@ ARG IMAGE_VCS_REF=00000000
 
 # Versions
 # These versions should be kept in sync with the ones in .github/workflows/ci.yaml.
-ARG QBITTORRENT_NOX_VERSION=5.1.4
-ARG QBITTORRENT_NOX_SUB_VERSION=5
+ARG QBITTORRENT_NOX_VERSION=5.2.0
+ARG QBITTORRENT_NOX_SUB_VERSION=0
 ARG LIB_TORRENT_VERSION=2.0.12
 
 # Non-root user and group IDs
@@ -31,7 +31,7 @@ ARG https_proxy
 
 RUN set -e && \
     apk -U upgrade && apk add --no-cache \
-    ca-certificates=20251003-r0 \
+    ca-certificates=20260413-r0 \
     wget=1.25.0-r2 \
     unzip=6.0-r16
 
